@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Live Quiz Platform
 
-## Getting Started
+A high-performance, real-time interactive quiz platform built with Next.js and Firebase. This application allows professors to create, manage, and host live quizzes with students. The system natively supports local network features allowing multi-device accessibility.
 
-First, run the development server:
+## Professor Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+The **Professor Dashboard** is your complete toolkit to manage student assessments effortlessly.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Secured Analytics & Control Room:** The entire dashboard is protected by a PIN. By default, it uses the PIN set in the `.env.local` configuration (`NEXT_PUBLIC_PROFESSOR_PIN=4826`).
+- **Create Quizzes Manually:** Instantly create interactive quizzes. Just write your questions, specify up to 4 options, dictate the correct answer, and add helpful hints.
+- **Dual-Link Distribution:** Upon creating a quiz out of a topic, you receive two exclusive links:
+  - **Host Link:** For controlling the timing, progression, and displaying results/leaderboard.
+  - **Student Join Link:** A public link where students enter their name (or a generated code) to participate on their own devices.
+- **Dashboard Management:** View all created quizzes (Waiting, Active, Finished), jump right into the Host interface, or delete archived quizzes.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Setup Instructions for Professors
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+To ensure immediate setup across systems:
 
-## Learn More
+1. **Prerequisites Checklist:** 
+   You need **Node.js** installed on your machine.
+   *Note: If you are setting this up via the provided self-installer (`QuizApp_Installer.bat`), it will automatically fetch and install Node.js for you.*
 
-To learn more about Next.js, take a look at the following resources:
+2. **Environment Variables (.env.local):**
+   Ensure `.env.local` rests at your project's root. At minimum, add your Firebase keys and a secure Professor PIN:
+   ```env
+   NEXT_PUBLIC_FIREBASE_API_KEY=your_key
+   NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_domain
+   NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_id
+   NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_bucket
+   NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+   NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
+   NEXT_PUBLIC_PROFESSOR_PIN=4826
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. **Using the Installer (Windows Only):**
+   - Double click on `QuizApp_Installer.bat`.
+   - It will install dependencies, configure directories under `C:\QuizPlatform`, and generate a handy Start Menu & Desktop Icon titled **"Start Quiz Server"**.
+   - Simply click the icon to launch the server and open the browser automatically.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+4. **Running Locally (Manual):**
+   - Run `npm install` to gather dependencies.
+   - Run `npm run dev` to start the execution environment.
+   - Using your web browser, navigate either to `http://localhost:3000/professor` (locally) or `<your-ipv4>:3000/professor` (via network) and type your PIN.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Developed for Modern Connectivity
+Built using **Next.js**, **React**, **Tailwind CSS**, and **Firebase Firestore** for lightweight, blazing-fast real-time database synchronizations across student devices down to the millisecond.
